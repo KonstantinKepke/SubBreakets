@@ -1,4 +1,4 @@
-﻿// leetcode.com MEDIUM
+// leetcode.com MEDIUM
 //Given n pairs of parentheses, write a function to generate all combinations of well - formed parentheses.
 
 //Example 1:
@@ -46,7 +46,7 @@ void Fstr(char* str, int i, int l, int r, int size) {
     strN[size*2] = '\0';
        // Fstr(strN, i+1, count-1, size);
        
-    _memccpy(strN, str, size*2, size*2);
+    memccpy(strN, str, size*2, size*2);
     cout << "NEW FSTR " << strN  << endl;
     if (i < size*2 ) {
         if (l < size && l>=r ) {
@@ -70,21 +70,16 @@ class Solution {
 public:
     vector<string> RESC;
     vector<string> generateParenthesisC(int n) {
-        char str[10];// = (char*)malloc(sizeof(char) * 6);
-        for (int i = 0; i < n * 2; i++)
-            str[i] = '!';
-        cout << str << " size = " << sizeof(char) * 6 << endl;
+        char str[18];// = (char*)malloc(sizeof(char) * 6);
         RESC.clear();
         FstrC(str, 0, 0, 0, n);
         return RESC;
     }
     void FstrC(char* str, int i, int l, int r, int size) {
-        char strN[8];
+        char strN[18];
         strN[size * 2] = '\0';
-        // Fstr(strN, i+1, count-1, size);
 
-        _memccpy(strN, str, size * 2, size * 2);
-        cout << "NEW FSTR " << strN << endl;
+        memccpy(strN, str, size * 2, size * 2);
         if (i < size * 2) {
             if (l < size && l >= r) {
                 strN[i] = '(';
@@ -97,10 +92,8 @@ public:
             }
 
         }
-        cout << "back =" << strN << endl;
         if (r == size && l == size)
             RESC.push_back(strN);
-
     }
 
 };
@@ -116,9 +109,12 @@ int main()
   //  printV(AllRES);
 
     Solution S;
-    AllRES = S.generateParenthesisC(1);
-
+    int i=1;
+    cout << "ENTER numbers of breakets: ";
+    cin>>i;
+    AllRES = S.generateParenthesisC(i);
+    cout << "Result = ";
     printV(AllRES);
 
-    cout << "Hello World!\n";
+    cout << "Bye bye\n";
 }
