@@ -16,79 +16,39 @@
 #include <vector>
 
 using namespace std;
-void Fstr(char*, int, int, int, int);
-void printV(vector<string> RES) {
-    for (int i = 0; i < RES.size(); i++) {
-        cout << RES[i] << " ";
 
-    }
-    cout << endl;
-}
-
-vector<string> RES;
-
-vector<string> generateParenthesis(int n) {
-    
-    string subres;
-    char str[10];// = (char*)malloc(sizeof(char) * 6);
-    for (int i = 0; i < n*2; i++) 
-        str[i] = '!';
-    cout << str << " size = " << sizeof(char) * 6 << endl;
-    RES.clear();
-    Fstr(str, 0, 0, 0, n);
-    return RES;
-}
-
-
-
-void Fstr(char* str, int i, int l, int r, int size) {
-    char strN[8];
-    strN[size*2] = '\0';
-       // Fstr(strN, i+1, count-1, size);
-       
-    memccpy(strN, str, size*2, size*2);
-    cout << "NEW FSTR " << strN  << endl;
-    if (i < size*2 ) {
-        if (l < size && l>=r ) {
-            strN[i] = '(';
-            Fstr(strN, i+1, l+1, r,  size);
-            
-        }
-        if (l>r) {
-            strN[i] = ')';
-            Fstr(strN, i + 1, l, r+1, size);
-        }
-        
-    }
-    cout << "back =" << strN << endl;
-    if (r == size && l == size)
-        RES.push_back(strN);
-    
+void printV (vector<string> str){
+    for(int i=0; i<str.size();i++)
+        cout << str[i] << " ";
 }
 
 class Solution {
 public:
     vector<string> RESC;
+    int size;
+    int length;
     vector<string> generateParenthesisC(int n) {
         char str[18];// = (char*)malloc(sizeof(char) * 6);
         RESC.clear();
-        FstrC(str, 0, 0, 0, n);
+        size=n;
+        length=size*2; 
+        FstrC(str, 0, 0, 0);
         return RESC;
     }
-    void FstrC(char* str, int i, int l, int r, int size) {
+    void FstrC(char* str, int i, int l, int r) {
         char strN[18];
-        strN[size * 2] = '\0';
+        strN[length] = '\0';
 
-        memccpy(strN, str, size * 2, size * 2);
-        if (i < size * 2) {
+        memccpy(strN, str, length, length);
+        if (i < length) {
             if (l < size && l >= r) {
                 strN[i] = '(';
-                FstrC(strN, i + 1, l + 1, r, size);
+                FstrC(strN, i + 1, l + 1, r);
 
             }
             if (l > r) {
                 strN[i] = ')';
-                FstrC(strN, i + 1, l, r + 1, size);
+                FstrC(strN, i + 1, l, r + 1);
             }
 
         }
